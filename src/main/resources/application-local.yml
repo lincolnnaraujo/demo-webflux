@@ -1,0 +1,56 @@
+#Porta
+server:
+  port: 10000
+
+#MongoDb
+spring:
+  data:
+    mongodb:
+      host: localhost
+      username: root
+      password: MongoDB2021!
+      port: 27017
+      database: db-tarefa
+      repositories:
+        enabled: true
+      authentication-database: admin
+
+#Log
+logging:
+  level:
+    org:
+      springframework:
+        boot:
+          web:
+            embedded:
+              netty: debug
+
+        http:
+          server:
+            reactive:
+              ReactorHttpHandlerAdapter: debug
+      ipc:
+        netty:
+          http: debug
+
+        logging:
+          level:
+            org:
+              mongodb:
+                driver: error
+                logging:
+                  level:
+                    org:
+                      springframework:
+                        data:
+                          mongodb:
+                            core:
+                              ReactiveMongoTemplate: debug
+                              logging:
+                                level:
+                                  org:
+                                    springframework:
+                                      data:
+                                        mongodb:
+                                          core:
+                                            MongoTemplate: debug
