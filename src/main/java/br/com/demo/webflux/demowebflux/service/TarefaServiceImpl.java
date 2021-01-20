@@ -4,6 +4,9 @@ import br.com.demo.webflux.demowebflux.document.Tarefa;
 import br.com.demo.webflux.demowebflux.enums.StatusHistorico;
 import br.com.demo.webflux.demowebflux.pojo.PojoTarefa;
 import br.com.demo.webflux.demowebflux.repository.TarefaRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -64,5 +67,11 @@ public class TarefaServiceImpl implements TarefaService{
                 }).flatMap(tarefaRepository::save);
             }
         }
+    }
+
+    @Override
+    public Flux<Tarefa> buscarTarefasPaginado(Pageable pageable) {
+        Pageable page = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("id"));
+        return tarefaRepository.buscarTarefasPaginado(page);
     }
 }
