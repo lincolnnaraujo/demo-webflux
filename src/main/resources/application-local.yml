@@ -15,6 +15,11 @@ spring:
         enabled: true
       authentication-database: admin
 
+#Open API - Custom Swagger
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
 #Log
 logging:
   level:
